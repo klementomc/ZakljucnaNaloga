@@ -29,11 +29,13 @@
 #define n_iter 1000
 #define thershP 10^-4
 #define thresh0 10^-4
+#define koef_alpha 0.1
 
 
 using namespace std;
 
 int stevec = 0;
+
 
 typedef Eigen::Matrix<double, 3, 1> vektor3d;//typdef za seznam
 typedef Eigen::Matrix<double, 7, 1> vektor7d;//typdef za seznam
@@ -197,17 +199,38 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj){
 
     std::vector<double> MAX = {sklep1_MAX,sklep2_MAX,sklep3_MAX,sklep4_MAX,sklep5_MAX,sklep6_MAX,sklep7_MAX};
     std::vector<double> MIN = {sklep1_MIN,sklep2_MIN,sklep3_MIN,sklep4_MIN,sklep4_MIN,sklep6_MIN,sklep7_MIN};
-
-    Eigen::VectorXd TrenutniKoti;
+    Eigen::VectorXd TrenutniKoti (7);
     for (int i = 0; i < 7; i++){TrenutniKoti(i) = seznam[i];}
+    //matrika KP in KO
+    Eigen::MatrixXd Kp_Ko;
+
+    Kp_Ko << 1,0,0,0,0,0,0,
+             0,1,0,0,0,0,0,
+             0,0,1,0,0,0,0,
+             0,0,0,1,0,0,0,
+             0,0,0,0,1,0,0,
+             0,0,0,0,0,1,0,
+             0,0,0,0,0,0,1;
+
 
     //naredimo kvaternion vektor iz željenih kotov
     Eigen::Matrix3d Zacetna_rotacijska_matrika;
     Zacetna_rotacijska_matrika = RotMat(T_cilj(3),T_cilj(4),T_cilj(5));
     Eigen::Vector4d Zacetni_kvaternion_vektor = RotMat2Qvec(Zacetna_rotacijska_matrika);
+    Eigen::Vector3d Zacetni_kvaternion_vektor_ijk;
+    Zacetni_kvaternion_vektor_ijk << Zacetni_kvaternion_vektor(1),Zacetni_kvaternion_vektor(2),Zacetni_kvaternion_vektor(3);
 
     float neP = 1.00;// vrednosti za izračun napake
     float neO = 1.00;// vrednosti za izračun napake 
+
+    Eigen::Vector3d Zeljena_pozicija;
+    Zeljena_pozicija << T_cilj(0),T_cilj(1),T_cilj(2);
+
+    Eigen::Vector3d eP;
+    Eigen::Vector3d eO;
+    Eigen::Vector3d Trenutna_pozicija;
+    Eigen::Vector3d Trenutna_orientacija;
+    Eigen::Vector3d kvaternion_vektor_trenutni_ijk;
 
     while(stevec < n_iter || (neP<thershP && neO<thresh0)){
 
@@ -216,8 +239,30 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj){
         Eigen::MatrixXd FK;
         FK = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
 
-        
+        //kvaternion vektor trenutnega stanja
+        Eigen::Vector4d kvaternion_vektor_trenutni = RotMat2Qvec(FK);
+        kvaternion_vektor_trenutni_ijk << kvaternion_vektor_trenutni(1),kvaternion_vektor_trenutni(2),kvaternion_vektor_trenutni(3);
+
+        Trenutna_pozicija << FK(0,3), FK(1,3), FK(2,3);
+
+        eP = Zeljena_pozicija - Trenutna_pozicija;
+        eO = -Zacetni_kvaternion_vektor(0)*kvaternion_vektor_trenutni_ijk + kvaternion_vektor_trenutni(0)*Zacetni_kvaternion_vektor_ijk - Zacetni_kvaternion_vektor_ijk.cross(kvaternion_vektor_trenutni_ijk);
+
+        Eigen::VectorXd vektor_zdruzen_eP_eO (6);
+        vektor_zdruzen_eP_eO << eP, eO;
+
+        Eigen::MatrixXd Pseudo_J = pseudoInverse(J);
+        TrenutniKoti = TrenutniKoti + koef_alpha * (Pseudo_J*(Kp_Ko*vektor_zdruzen_eP_eO));
+
+        neP = eP.maxCoeff();
+        neO = eO.maxCoeff();
+
+        stevec += 1;
+
     }
+    stevec = 0;
+    for(int u = 0;u<=7;u++){TrenutniKoti(u) = seznam[u];}
+    return TrenutniKoti;
 }
 
 int main(){
