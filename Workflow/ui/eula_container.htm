@@ -1,0 +1,96 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<title></title>
+	<meta http-equiv="x-ua-compatible" content="IE=11" >
+	<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR" />
+	<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema" />
+	<meta http-equiv="MSThemeCompatible" content="yes">
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../shared/ccc.css" />
+    <script src="../shared/ccc.js"></script>
+    <script language="javascript">
+	function onLoad() {
+	  location = 'pcucmd://ContainerLoaded/';
+	}
+	function markread(obj) {
+		var acceptbtn = document.getElementById('pcubtnaccept');
+		if (obj.checked == true) {
+			acceptbtn.disabled = false;
+		}
+		else {
+			acceptbtn.disabled = true;
+		}
+	}
+	function OnAction(type) {
+		var file = "<storage>/ui/";
+		if (type == 'eula') {
+			file += 'License.htm';
+		}
+		else {
+			file += 'Tos.htm';
+		}
+	    location = "pcucmd://browse?url='" + file + "'&suppressnext=true";
+	}
+    </script>
+	<style>
+		body {
+			font-size: 12px;
+			background-color: white;
+			background-image: none;
+		}
+		.eulacontainer {
+			position: relative;
+			color: black;
+			width: 45.833em; /* 550px */
+			height: 31.667em; /* 380px */
+			margin: 0.833em; /* 10px */
+			padding: 0.833em; /* 10px */
+		}
+		.eulabannerimg {
+			width: 51.000em; /* 612px */
+		}
+		.eulabuttoncontainer {
+			position: absolute;
+			bottom: 0.417em; /* 5px */
+			left: 0.833em; /* 10px */
+			width: 100%;
+			text-align: right;
+		}
+		.eulalinks {
+			margin: 1.667em 0; /* 20px */
+		}
+		#readcheckbox {
+			margin-left: -0.250em; /* -3px */
+		}
+		#optbuttons {
+			margin-top: 0.833em; /* 10px */
+		}
+	</style>
+    </head>
+	<body onload="onLoad()" scroll="no">
+		<img class="eulabannerimg" src="../shared/Images/banner.png">
+		<div class="eulacontainer">
+			<h1>Please review the EULA and Privacy Statement</h1>
+			<hr>
+			<p>Your installation and use of this software is subject to the terms of the Corel End User License Agreement (EULA).</p>
+			<div class="eulalinks">
+				<p>Read the <a href="#" onclick="OnAction('eula')">EULA</a></p>
+			</div>
+			<div id="autodownload">
+				<input id="readcheckbox" type="checkbox" onclick="markread(this);" />
+				<label for="readcheckbox">I agree to the End User Licence Agreement</label>
+			</div>
+			<p>The privacy practices and data processing regarding the installation and use of this software are described in our <a href="#" onclick="location='pcucmd://fullbrowse?url=\'http://www.corel.com/privacy/\'';return false;">Privacy Statement</a>.</p>
+			<div class="eulabuttoncontainer">
+				<hr/>
+				<div id="optbuttons">
+				  <button class="initiator" type='button' accesskey='A' id='pcubtnaccept' name='pcubtnaccept' onclick="location='pcucmd://Continue/'" tabindex="1" disabled><u>A</u>ccept</button>
+				</div>
+			</div>
+		</div>
+		<div id="pcu_data" style="display:none;">
+			PageDimension:612,484
+		</div>
+	</body>
+</html>

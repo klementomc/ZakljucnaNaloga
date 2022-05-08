@@ -1,0 +1,104 @@
+/* CUH css */
+body {
+	margin: 0px;
+	overflow:hidden;
+	background-color: white;
+	font-family: Segoe UI, sans-serif;
+}
+.MessageBody {
+	width: 190px;
+	height: 200px;
+	border-style:none;
+	font-family: Segoe UI, sans-serif;
+}
+.msgcont1 {
+	filter:progid:DXImageTransform.Microsoft.Iris(irisstyle=DIAMOND,motion=out);
+	border-style:none;
+	border-color:#2a567f;
+	position:absolute;
+}
+.msgcont2 {
+	filter:progid:DXImageTransform.Microsoft.Fade(duration=2);
+	border-style:none;
+	border-color:#2a567f;
+	position:absolute;
+}
+.msgcont3 {
+	filter:progid:DXImageTransform.Microsoft.Pixelate(MaxSquare=10,Duration=1, Enabled=true);
+	border-style:none;
+	border-color:#2a567f;
+	position:absolute;
+}
+.msg {
+	visibility: hidden;
+}
+
+/* not used */
+.TestingAid {
+	DISPLAY:none;
+	POSITION: absolute;
+	LEFT: 0px; TOP: 0px; width:190px;
+}
+.MsgInfo {
+	z-index:1;
+	position:absolute;
+	background-color:Yellow;
+	display:none;
+	width: 190px;
+	height: 200px;
+	border-style:none;
+	font-family: Verdana; font-size: 10pt;
+}
+
+/* top bar */
+#msgtopbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background-color: black;
+	filter: alpha(opacity=0);
+}
+#msgcls {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#msgcls a {
+	color: black;
+	text-decoration: none;
+	font-size: 13px;
+}
+#msgcls img {
+	width: 17px;
+	border: 0;
+	margin: 4px;
+	filter: alpha(opacity=75);
+	opacity: 0.75;
+}
+.btmmsgcls {
+	position: absolute;
+	left: 0.4em;
+	bottom: 0.3em;
+	font-size: 0.7em;
+	z-index: 999999999;
+}
+.btmmsgcls a, #btmmsgcls1 {
+	color: #6d6d6d;
+	text-decoration: none;
+}
+#dntshowagain {
+	color: #A1A1A1;
+	text-decoration: none;
+}
+.btmcont {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	font-size: 0.7em;
+	height: 25px;
+	width: 100%;
+	padding-left: 0.4em;
+	padding-top: 0.45em;
+}

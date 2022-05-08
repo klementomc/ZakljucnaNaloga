@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflowdefs version="1">
+
+  <!--
+  This XML document describes the structure of the workflow definition, which is used to 
+  define the workflows (Trial, Registration, Purchase, etc.), the pages that make up the workflows 
+  and their attributes.
+  -->
+  
+  <!-- 
+  ***********************************************
+  Trial Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="trial">
+    <workflowsteps>     
+      <workflowstep name="purchase_first_page" url=""> <!-- upa?a.htm and upa?b.htm -->
+        <params>
+          <![CDATA[
+          ShowCounter=yes&NumDays=<NumDays>&Status=<Status>&ST=<ST>&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&RTO=<RTO>&TotalDays=<TotalDays>&isregistered=<isregistered>&regtype=<regtype>
+          ]]>
+
+        </params>
+      </workflowstep>
+      <workflowstep name="feature_activation_page" count="true" url="">
+           <params>
+                <![CDATA[
+                ShowCounter=yes&NumDays=<NumDays>&Status=<Status>&ST=<ST>&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&RTO=<RTO>&TotalDays=<TotalDays>
+                ]]>
+      
+           </params>
+      </workflowstep>
+      <workflowstep name="trial_page" count="true" url=""> <!-- up?a.htm and up?b.htm -->
+
+        <params>
+          <![CDATA[
+          ShowCounter=yes&NumDays=<NumDays>&Status=<Status>&ST=<ST>&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&RTO=<RTO>&TotalDays=<TotalDays>&isregistered=<isregistered>&regtype=<regtype>&ExtensionPeriod=<ExtensionPeriod>
+          ]]>
+
+        </params>
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+
+  </workflowdef>
+  
+  
+  <!-- 
+  ***********************************************
+  Purchase Method (from trial page) Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="purchase_method_from_trial">
+    <workflowsteps>     
+      <workflowstep name="purchase_method_page_1" url=""> <!-- uppm.htm -->
+        <params>
+
+          <![CDATA[
+          _redirect=pcupurchase&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+
+    </workflowsteps>
+  </workflowdef>
+
+  <!-- 
+  ***********************************************
+  Purchase Method (from "Buy Now") Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="purchase_method_from_buynow">
+    <workflowsteps>     
+      <workflowstep name="purchase_method_page_2" url="">  <!-- uppm1.htm -->
+
+        <params>
+          <![CDATA[
+          _redirect=pcupurchase&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&<SVRCKS>
+          ]]>
+
+        </params>
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+
+  
+  <!-- 
+  ***********************************************
+  Purcahse Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="purchase">
+
+    <workflowsteps>     
+      <workflowstep name="purchase_offline_page_enter_serialnumber" url=""> <!-- p1b1.htm -->
+
+        <params>
+          <![CDATA[
+          InstallationCode=<InstallationCode>&SourceID=<SourceID>&NumDays=<NumDays>&serial=<SNF>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="purchase_offline_page_enter_activationcode" url=""> <!-- p1b2.htm -->
+        <params>
+
+          <![CDATA[
+          InstallationCode=<InstallationCode>&SourceID=<SourceID>&serial=<SNF>&NumDays=<NumDays>
+          ]]>
+        </params>
+
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+        </params>
+      </workflowstep>
+
+    </workflowsteps>
+  </workflowdef>
+
+  
+  
+  <!-- 
+  ***********************************************
+  Purchase 1st Activation Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="purchase1st_activation_method">
+    <workflowsteps>     
+      <workflowstep name="activation_method_page" url=""> <!-- ea2.htm -->
+        <params>
+          <![CDATA[
+          serial=<SNF>
+          ]]>
+
+        </params>
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+
+        <params>
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+        </params>
+      </workflowstep>
+    </workflowsteps>
+
+  </workflowdef>
+
+
+  <!-- 
+  ***********************************************
+  Extension Activation Offline Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="activation_offline">
+
+    <workflowsteps>
+      <workflowstep name="activation_offline_page" url=""> <!-- p1b.htm -->
+        <params>
+          <![CDATA[
+          InstallationCode=<InstallationCode>&SourceID=<SourceID>&serial=<SNF>&NumDays=<NumDays>
+          ]]>
+
+        </params>
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+        </params>
+      </workflowstep>
+    </workflowsteps>
+
+  </workflowdef>
+
+  <!-- 
+  ********************************************************************
+  Internet Connection Issue Workflow extension of Activation Workflow 
+  ********************************************************************
+  -->
+  <workflowdef name="activation_connection_error">
+    <workflowsteps>
+      <workflowstep name="activation_connection_error_page" count="true" url="">
+        <params>
+          <![CDATA[
+   	       ]]>
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+
+    
+  <!-- 
+  ***********************************************
+  Enter Key Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="enter_key">
+    <workflowsteps>
+
+      <workflowstep name="enter_key_page"> <!-- ea.htm -->
+
+        <params>
+          <![CDATA[
+		serial=<SNF>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+  
+
+  <!-- 
+  ***********************************************
+  Retrieve Key Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="retrieve_key">
+    <workflowsteps type="online">
+      <workflowstep name="login_page" url="http://apps.corel.com/redirect/">
+        <params>
+
+          <!-- Note: Action=13 below refers to retrieval of existing purchase key -->
+          <!--PRE-TCM LINK: _redirect=pcu&stepName=null&action=13&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&ST=<ST>&hfpid=<PCID>&<SVRCKS>-->
+		  <![CDATA[
+		  _redirect=hybridreg&version=2&action=13&page=reg&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+          <![CDATA[
+          activationcode=<ActivationCode>&ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+
+        </params>
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+
+  
+  <!-- 
+  ***********************************************
+  Retrieve extension serial number for Trial Extension Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="retrieve_extension_key">
+    <workflowsteps type="online">
+      <workflowstep name="login_extension_page" url="http://apps.corel.com/redirect/">
+
+        <params>
+          <!-- Note: Action=22 below refers to retrieval of new extension key -->
+		  <!-- PRE-TCM: _redirect=pcu&stepName=null&action=22&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&ST=<ST>&hfpid=<PCID>&<SVRCKS> -->
+          <![CDATA[
+  		  _redirect=hybridreg&version=2&action=22&page=reg&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+
+      <workflowstep name="activation_info_page" url=""> <!-- a1.htm & a2.htm -->
+        <params>
+
+          <![CDATA[
+          ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+
+        </params>
+      </workflowstep>
+    </workflowsteps>
+    <workflowsteps type="offline">
+      <workflowstep name="extension_connect_page_free" url="">
+        <params>
+          <![CDATA[
+          ]]>
+
+        </params>
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+
+  <!-- 
+  ***********************************************
+  purchase extension serial number for Paid Extension Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="purchase_extension_key">
+    <workflowsteps type="online">
+      <workflowstep name="purchase_extension_invoke_page" url=""> <!-- cas1a.htm -->
+
+        <params>
+          <![CDATA[
+  		      _redirect=pcupurchase&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&type=pe&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+
+      <workflowstep name="activation_info_page" url="">
+        <!-- a2.htm -->
+        <params>
+          <![CDATA[
+            ST=<ST>&serial=<SNF>&producttitle=<ProductTitle>
+          ]]>
+
+        </params>
+      </workflowstep>
+    </workflowsteps>
+    <workflowsteps type="offline">
+      <workflowstep name="extension_connect_page" url="">
+        <params>
+          <![CDATA[
+          ]]>
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+    </workflowdef>
+
+
+  <!-- 
+  ***********************************************
+  Registration Welcome Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="register_welcome">
+    <workflowsteps>
+      <workflowstep name="prereg_page" url=""> <!-- prereg.htm -->
+
+        <params>
+          <![CDATA[
+          NumDays=<NumDays>&Status=<Status>&ST=<ST>&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&TotalDays=<TotalDays>&invokedfrom=<RegTrigger>&regtype=<regtype>&isregistered=<isregistered>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="reg_welcome_page" count="true" url="">  <!-- HybridRegWelcome.htm, regWelcomeOpt.htm, regWelcomeStdln.htm -->
+        <params>
+          <![CDATA[
+          invokedfrom=<RegTrigger>&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&serial=<SNF>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&TotalDays=<TotalDays>&regtype=<regtype>&<SVRCKS>
+          ]]>
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+  
+
+  <!-- 
+  ***********************************************
+  Registration Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="register">
+    <workflowsteps type="online">
+      <workflowstep name="reg_login_page" url="http://apps.corel.com/redirect/"> <!-- Hybridreg -->
+        <params>
+
+          <![CDATA[
+          _redirect=hybridreg&version=2&page=reg&invokedfrom=<RegTrigger>&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&serial=<SNF>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&hfpid2=<HDID>&confversion=2&regoverride=<RegOver>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="reg_cross_sell_page" count="true" url="http://apps.corel.com/redirect/"> <!-- online page earlier -->
+        <params>
+          <![CDATA[
+          _redirect=hybridreg&version=2&page=xsell&invokedfrom=<RegTrigger>&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&serial=<SNF>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+
+    </workflowsteps>
+    <workflowsteps type="offline">
+      <workflowstep name="reg_options_page" url=""> <!-- regOffline.htm -->
+        <params>
+          <![CDATA[
+          _redirect=hybridreg&version=2&page=fbr&invokedfrom=<RegTrigger>&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&serial=<SNF>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&<SVRCKS>
+          ]]>
+
+        </params>
+      </workflowstep>
+      <workflowstep name="reg_confirmation_page" url=""> <!-- regConfirmPage.htm -->
+
+        <params>
+          <![CDATA[
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="reg_thank_you_page" url=""> <!-- regThankPage.htm -->
+        <params>
+          <![CDATA[
+          ]]>
+        </params>
+
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+
+  
+  <!-- 
+  ***********************************************
+  Registration CSS Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="register_css">
+
+    <workflowsteps>
+      <workflowstep name="reg_phone_css_page" url=""> <!-- regPhoneCCS.htm -->
+
+        <params>
+          <![CDATA[
+          invokedfrom=<RegTrigger>
+          ]]>
+        </params>
+      </workflowstep>
+      <workflowstep name="reg_confirmation_page" url=""> <!-- regConfirmPage.htm -->
+        <params>
+
+          <![CDATA[
+          ]]>
+        </params>
+
+      </workflowstep>
+      <workflowstep name="reg_thank_you_page" url=""> <!-- regThankPage.htm -->
+        <params>
+          <![CDATA[
+          ]]>
+        </params>
+      </workflowstep>
+
+    </workflowsteps>
+  </workflowdef>
+
+  <!-- 
+  ***********************************************
+  Subscription Sign-in Workflow 
+  ***********************************************
+  -->
+  <workflowdef name="subscription_signin">
+    <workflowsteps type="online">
+      <workflowstep name="subscription_signin_page" url="">
+        <params>
+          <![CDATA[
+            NumDays=<NumDays>&Status=<Status>&ST=<ST>&licenseid=<License>&SourceID=<SourceID>&lang=<LangCode>&RTO=<RTO>&TotalDays=<TotalDays>&isregistered=<isregistered>&regtype=<regtype>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+    </workflowsteps>
+    <workflowsteps type="offline">
+    <workflowstep name="subscription_nocache_offline_page" url="">
+      <params>
+        <![CDATA[
+          ]]>
+      </params>
+    </workflowstep>
+  </workflowsteps>
+  </workflowdef>
+
+  <!-- 
+  ***********************************************
+  Forgot Password Workflow 
+  ***********************************************
+  -->  
+  <workflowdef name="forgot_password">
+
+    <workflowsteps>
+      <workflowstep name="forgot_password_page" url="http://apps.corel.com/redirect/"> 
+
+        <params>
+          <![CDATA[
+          _redirect=forgotpassword&version=2&page=reg&invokedfrom=<RegTrigger>&trialTypeCode=<ST>&licenseId=<License>&sourceId=<SourceID>&lang=<LangCode>&serial=<SNF>&hfpid=<PCID>&status=<Status>&numDays=<NumDays>&regtype=<regtype>&hfpid2=<HDID>&confversion=2&regoverride=<RegOver>&<SVRCKS>
+          ]]>
+        </params>
+      </workflowstep>
+    </workflowsteps>
+  </workflowdef>
+</workflowdefs>

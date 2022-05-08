@@ -1,0 +1,235 @@
+
+					
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+		<META HTTP-EQUIV="MSThemeCompatible" CONTENT="yes">
+		
+			<!-- process skin css -->
+			<link rel="stylesheet" type="text/css" 
+					href='../trialSkin/1241638714996.txt.css'
+				/>
+		
+		
+		
+		
+		<script type="text/javascript" src="../shared/CCC.js"></script>
+		<script type="text/javascript">
+	
+			var itrkid	= 0;
+			var promo	= null;
+			var productName = "Corel Update Helper V2";
+			var actionIdList = {
+			
+				 
+					"8" : "227",			
+				
+				"-1" : "dummy"
+			
+			};
+			
+			function btnHybridRegContinue_OnClick() {
+				if (getParamVal("isregistered") == 1) {
+					document.location='pcucmd://Continue';
+				} else {
+					document.location='pcucmd://SetSequence?name=register';
+				}
+			}
+			
+			function init() {
+				document.location = "pcucmd://ResetCounter";
+				document.location.replace('pcucmd://FrameDataLoaded');
+
+				document.location.href = 'pcucmd://AddTrackingData?id=1241638657325&name=workflow&value=trial';
+				document.location.href = 'pcucmd://AddTrackingData?id=1241638657325&name=trackingid&value=0';					
+				
+				if (actionIdList[getParamVal("ST")] !== void(0)) {
+					document.location.href = 'pcucmd://AddTrackingData?id=1241638657325&name=actionid&value=' + actionIdList[getParamVal("ST")];				
+				}
+				
+				if (itrkid != null) {
+					document.location.replace('pcucmd://SetCookie?itrkid=' + itrkid);
+				}	
+
+				init_trial_page();
+			}
+		
+			function getPCUNVPs(fullList, noAdmin) {
+				var nvps = '&licenseid=<license>&sourceid=<sourceid>&lang=en&x-profileid=<ProfileID>&hfpid=<PCID>&NumDays=<NumDays>';
+
+				if (typeof(promo) != "undefined" && promo!=null) {
+					document.location = "pcucmd://SetCookie?promo=''";
+					
+					nvps += "&promo=" + promo;
+				}
+		
+				if (typeof(noAdmin) != "undefined" && !noAdmin) {
+					nvps += "&admin=yes";
+				}
+		
+				if (fullList) {
+					nvps += "&<SVRCKS>";
+				} 
+
+				return nvps;		
+			}
+			
+			function launchStore(noAdmin,fullBrowser,alternativelicenseid) {
+				var storeUrl = addGoogleAnalyticsParamsToUrl("http://iws.corel.com/ipmws/redirect/index.jsp?_redirect=pcupurchase" + getPCUNVPs(true, noAdmin));
+				if(alternativelicenseid){
+					storeUrl += "&alternativelicenseid=" + alternativelicenseid; 
+				}
+				var url = "pcucmd://browse?URL='" + storeUrl + "'";
+				if(arguments.length >= 2 && (fullBrowser == "true" || fullBrowser == true)){
+		        		storeUrl += "&fullbrowser=true";
+			        	url = "pcucmd://fullbrowse?url='" + storeUrl + "'";
+				}
+				document.location.href = url;
+			}
+		
+			function launchStoreForTryAndDie(noAdmin,fullBrowser,alternativelicenseid) {
+				var storeUrl = addGoogleAnalyticsParamsToUrl("http://iws.corel.com/ipmws/redirect/index.jsp?_redirect=command&buildcode=<SNF>" + getPCUNVPs(true, noAdmin));
+				if(alternativelicenseid){
+					storeUrl += "&alternativelicenseid=" + alternativelicenseid; 
+				}
+				var url = "pcucmd://browse?URL='" + storeUrl + "'";
+				if(arguments.length >= 2 && (fullBrowser == "true" || fullBrowser == true)){
+	        		storeUrl += "&fullbrowser=true";
+		        	url = "pcucmd://fullbrowse?url='" + storeUrl + "'";
+				}
+				document.location.href = url;
+			}
+			
+			function addGoogleAnalyticsParamsToUrl(url){
+			   originalUrl = url;
+			   try{
+			      url = addOrUpdateQStringParam(url,"utm_term","Trial");
+			      url = addOrUpdateQStringParam(url,"utm_medium","IPM");
+			      url = addOrUpdateQStringParam(url,"utm_source","<license>-<sourceid>");
+			      url = addOrUpdateQStringParam(url,"utm_campaign","1241638657325");
+			      url = addOrUpdateQStringParam(url,"utm_content","<PCID>");
+			      url = addOrUpdateQStringParam(url,"x-vehicle","Trial");
+			   } catch(err) {
+			      return originalUrl;
+			   }
+			   return url;
+			}
+
+			function addOrUpdateQStringParam(uri, key, value) {
+			  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+			  var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+			  if (uri.match(re)) {
+			    return uri.replace(re, '$1' + key + "=" + value + '$2');
+			  }
+			  else {
+			    return uri + separator + key + "=" + value;
+			  }
+			}
+		
+			function activate() { 
+				 location.href = "pcucmd://Activate?admin=yes";
+				 location.href = "pcucmd://Next?condition=true";
+			}
+
+			function replacePname(){
+				if(productName == "null") productName = "Corel";
+				content.innerHTML=content.innerHTML.replace("[pname]",productName);
+			}
+
+		</script>
+	</head>
+	<body tabindex="-1" onload="init();replacePname()">
+		<div style="text-align:left;">
+			<div  id="content">
+				
+				<div style="padding:0px;margin:0px">
+<div align="center" style="width: 600px; height: 343px; background: url('../shared/Images/mainimage_UP1default.jpg') no-repeat">
+<div style="float: right; width: 280px; padding: 25px 10px 10px 10px; text-align: left">
+	<h1>We hope you are enjoying your trial!</h1>
+	<p>Check out the <i>Resource Center</i> for tips, tutorials, learning videos, free creative content and much more!</p>
+        <div align="center"><input id="buttonRC" type="button" value="Visit Resource Center" onclick="location='pcucmd://fullbrowse?url=\'http://www.corel.com/corel/pages/index.jsp?pgid=13300215\'';return false;" /></div>
+	<p>At any time, you can purchase the full version of this product by clicking the <i>Buy now</i> button.</p>
+<table align="center" cellspacing="0" cellpadding="0">
+      	<a onclick="location='pcucmd://setsequence?name=purchase_method_from_trial&admin=yes'"><tr>
+      	    <td><img style="cursor:hand" alt="" src="../shared/Images/Button/button_green_leftcap.gif" /></td>
+      	    <td width="60" background="../shared/Images/Button/button_green_middle.gif" style="cursor:hand; text-align: center; font-size: 12px; color: #ffffff; text-decoration: none; font-weight: bold">
+      	        Buy Now
+      	    </td>
+      	    <td><img style="cursor:hand" alt="" src="../shared/Images/Button/button_green_rightcap.gif" /></td>
+      	 </tr></a>
+</table>
+</div>
+</div>
+</div>
+			</div>
+				
+				
+					
+					
+					
+				
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+	
+
+
+<div id="ButtonBar" style="display: none;">
+	<div style="width: 100%; height: 100%; padding: 0px; margin: 0px; border: none;" id="Table1">
+		<div style="float:left;text-align:left">
+			<table align="center">
+				<tr>
+					<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='A' id='pcubtnpurchasedquestion' name='pcubtnpurchasedquestion'  onclick="document.location='pcucmd://SetSequence?admin=yes&name=enter_key';"><u>A</u>lready Purchased?</button></td>
+<td><label class='buttonBar' >Click here to enter your serial number.</label></td>
+
+				</tr>
+			</table>
+		</div>
+		<div style="float:right;text-align:right">
+			<table align="center">
+				<tr>
+					<td><button style='overflow:visible;width:100%' class='buttonBar' type='submit' accessKey='C' id='pcubtnclose' name='pcubtnclose'  onclick="location='pcucmd://Cancel?confirm=no'"><u>C</u>lose</button></td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+	
+
+
+			
+			
+				
+					<div id="pcu_data" style="display:none;">
+						PageDimension:612,464
+					</div>
+				
+				
+			
+		</div>
+	</body>
+</html>
+
+	  			

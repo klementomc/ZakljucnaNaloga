@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?xml version="1.0" encoding="utf-8" ?-->
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>%d%% of Download Completed</title>
+	<link href="downloaddlg_files/ccc.htm" type="text/css" rel="Stylesheet">
+	 <style type="text/css">
+
+	       body
+	        {
+	            margin: 0px;
+	        }
+            input
+            {
+                float:right;
+                margin-right:5px;
+                width:75px;
+            }
+
+   </style>
+	<script type="text/javascript" id="clientEventHandlersJS" language="javascript">
+	<!--
+
+  	var timerID = 0;
+	function onLoad()
+	{
+        var strDownloadItem= window.external.GetDownloadItem();
+
+        var elementDownloadItem = document.getElementById("downloaditem");
+        elementDownloadItem.innerHTML =strDownloadItem;
+
+	    OnTimer();
+        timerID = window.setTimeout("OnTimer()", 500);
+	}
+
+	function OnCancel()
+	{
+	   window.clearTimeout(timerID);
+	   timerID = 0;
+	   window.external.DIMDialogCancel();
+	}
+	function OnOK()
+	{
+	   window.clearTimeout(timerID);
+	   timerID = 0;
+	   window.external.DIMDialogOK();
+	}
+
+    function DisplayProgressBar(nProgress)
+    {
+
+		// adust the size of the progress bar
+		var elmTopSlider = document.getElementById("divOverSlider");
+		var elmBotSlider = document.getElementById("divUnderSlider");
+	    if ( (null != elmTopSlider) && (null != elmBotSlider))
+	    {
+	    	var nTotalWidth = parseInt(elmBotSlider.offsetWidth);
+
+	    	if((nTotalWidth != 0) && (nProgress != 0))			{
+				var nPartWidth = (nTotalWidth * nProgress )/100.0;
+				if (nPartWidth == 0) {
+					elmTopSlider.style.width = "0px";
+				}
+				else {
+					elmTopSlider.style.width = String(nPartWidth + "px");
+				}
+			}
+	    }
+    }
+    function OnTimer()
+    {
+        window.clearTimeout(timerID);
+        // change progress
+        var nProgress =   window.external.GetDownloadProgress();
+        DisplayProgressBar(nProgress);
+        window.external.UpdateDialogTitle();
+        timerID = window.setTimeout("OnTimer()", 500);
+    }
+	//-->
+	</script>
+	<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+	<meta http-equiv="MSThemeCompatible" content="yes">
+</head>
+<body oncontextmenu="return false;" onselectstart="return false;" onload="onLoad()">
+<table id="msgcontainer" cellpadding="0" cellspacing="0">
+  <tbody><tr id="bannertop">
+    <td id="bannertopleft"></td>
+    <td id="bannertopcenter"></td>
+    <td id="bannertopright"></td>
+  </tr>
+  <tr id="bannercenter" valign="top">
+    <td id="bannercenterleft"></td>
+    <td>
+        <table id="bannercentercentertable" cellpadding="0" cellspacing="0" border="0">
+        <tbody><tr>
+        <td colspan="2" valign="middle" align="center">
+    	<img id="img1" alt="" src="downloaddlg_files/banner.htm">
+    	</td>
+    	</tr>
+    	<tr>
+    	<td colspan="2" valign="middle" align="center">
+      	<p class="dlgdescription">
+      		<a id="a1">Downloading...</a>
+      		<br>
+      	</p>
+      	</td>
+      	</tr>
+
+      	  <tr id="tdProgress">
+				<td>
+					<!-- this is the 600x22 area for the progress bar-->
+					<div id="divUnderSlider">
+						<div id="divOverSlider">
+							<div id="divPBStart"></div>
+							<div id="divPBEnd"></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+          <tr valign="top">
+                <td style="height: 67px"><div style="height: 57px; overflow: auto">
+                    <p class="downloadingtext">Downloading:&nbsp;&nbsp;<span id="downloaditem"></span></p>
+                    <p class="downloadingtext" id="percentage"></p>
+                </div></td>
+            </tr>
+            <tr>
+                <td colspan="2" valign="middle">
+                    <input value="Cancel" onclick="OnCancel()" type="button">
+                </td>
+            </tr>
+      	</tbody></table>
+    </td>
+    <td id="bannercenterright"></td>
+  </tr>
+  <tr id="bannerbottom">
+    <td id="bannerbottomleft"></td>
+    <td id="bannerbottomcenter"></td>
+    <td id="bannerbottomright"></td>
+  </tr>
+</tbody></table>
+
+        <div id="pcu_data" style="display:none;">
+				PageDimension:638,243
+		</div>
+
+</body></html>

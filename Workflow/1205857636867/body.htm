@@ -1,0 +1,150 @@
+
+				<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">		    
+				<html>
+					<head>
+						<meta http-equiv="MSThemeCompatible" content="yes">
+						<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+						
+								<link rel="stylesheet" type="text/css" href='..\genericSkin\1248383926732.txt.css'/>
+								
+						
+							
+							<link href="../shared/ccc.css" type="text/css" rel="STYLESHEET" />
+<script src="../shared/ccc.js"></script>
+<script language="javascript">
+<!--
+function OnConnect()
+{
+	location="pcucmd://Connect";
+	location="pcucmd://SetSequence?name=register_welcome&condition=yes";
+}
+
+function OnWeb()
+{
+	var strURL="http://apps.corel.com/redirect/"+getParamString();
+	location="pcucmd://FullBrowse?url='"+strURL+"'";
+	location="pcucmd://Next/"
+}
+
+function onpageload()
+{
+	location = "pcucmd://FrameDataLoaded";
+}
+
+function OnContinue()
+{
+	var connect = document.getElementById( "Connect" );
+	var web = document.getElementById( "Web" );
+	var later = document.getElementById( "Later" );
+
+	if ( connect != null && connect.checked )
+	{
+		OnConnect();
+	}
+	else if ( web != null && web.checked )
+	{
+		OnWeb();
+	}
+	else if ( later != null && later.checked )
+	{
+		location='pcucmd://continue';
+	}
+}
+-->
+</script>
+						
+						
+					</head>
+			    	
+			    	<body onload="onpageload();" tabindex="-1">
+							
+							
+								
+								
+								
+							
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+	
+
+
+<div id="ButtonBar" style="display: none;">
+	<div style="width: 100%; height: 100%; padding: 0px; margin: 0px; border: none;" id="Table1">
+		<div style="float:left;text-align:left">
+			<table align="center">
+				<tr>
+					
+				</tr>
+			</table>
+		</div>
+		<div style="float:right;text-align:right">
+			<table align="center">
+				<tr>
+					<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='o' id='pcubtncontinue' name='pcubtncontinue'  onclick="document.location='pcucmd://CallScriptFunc?funcname=OnContinue'">C<u>o</u>ntinue</button></td>
+<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='C' id='pcubtncancel' name='pcubtncancel'  onclick="document.location='pcucmd://Cancel'"><u>C</u>ancel</button></td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+	
+
+
+						
+						
+							
+								<div id="pcu_data" style="display:none;">
+									PageDimension:613,470
+								</div>
+							
+							
+						
+						
+							
+							<div style="padding: 20px">
+	<h1 style="font-size: 15px">Registration</h1>
+	<p style="font-weight: bold">Unable to connect to the Internet to register</p>
+	<p>To proceed, choose one of the options below:</p>
+	<table style="WIDTH: 100%" cellpadding="0" cellspacing="8" ID="Table2">
+		<tr>
+			<td><input accesskey="L" name="register" type="radio" id="Connect" checked VALUE="Connect"> Connect on<u>l</u>ine and register now</td>
+		</tr>
+		<tr>
+			<td>Choose this option if you have enabled your Internet connection or configured your firewall not to block this application.</td>
+		</tr>
+		<tr>
+			<td><input accesskey="W" name="register" type="radio" id="Web" VALUE="Web"> Register now using a <u>W</u>eb Browser</td>
+		</tr>
+		<tr>
+			<td>Choose this option if you are currently able to browse the Internet but are unable to register using the above option.</td>
+		</tr>
+		<tr>
+			<td><input accesskey="T" name="register" type="radio" id="Later" VALUE="Later"> Register la<u>t</u>er</td>
+		</tr>
+		<tr>
+			<td>Choose this option to be reminded to register at a later time.</td>
+		</tr>
+	</table>
+</div>
+						
+					</body>
+				</html>
+				

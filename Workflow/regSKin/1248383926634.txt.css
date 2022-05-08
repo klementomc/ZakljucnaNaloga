@@ -1,0 +1,546 @@
+/* Global Registration Skin ################ */
+
+
+body,table,tr,td
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #333333;
+margin: 0px;
+background-color: #FFFFFF;	
+}
+
+p
+{
+font-family: Arial, Helvetica;
+font-size: 12px;
+font-weight: normal;
+color: #333333;
+}
+
+h1
+{
+font-family: Arial, Helvetica;
+font-size: 14px;
+font-weight: bold;
+color: #333333;
+margin: 2px 2px 2px 0px;
+}
+
+h2
+{
+font-family: Arial, Helvetica;
+font-size: 13px;
+font-weight: bold;
+color: #333333;
+font-style: italic;
+margin: 2px 2px 2px 0px;
+}
+
+h3
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: bold;
+color: #333333;	margin: 2px 2px 2px 0px;
+}
+
+h4
+{	
+font-family: Arial, Helvetica;
+font-size: 16px;
+font-weight: bold;
+color: #E30707;
+font-style: italic;
+margin: 2px 2px 2px 0px;
+}
+
+li
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #333333;
+}
+.normal
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #333333;
+}
+
+a
+{
+font-weight: bold;
+color: #333333;
+text-decoration: underline;
+}
+
+a:hover
+{
+font-weight: bold;
+color: #000000;
+text-decoration: underline;
+}
+
+a:visited
+{
+font-weight: bold;
+color: #333333;
+text-decoration: underline; 	
+}
+
+#SetupFooter
+{
+position: absolute;
+bottom: 115; left: 80; width: 580;
+font-family: Arial, Helvetica;
+font-size: 10px;
+font-weight: normal;
+color: #333;
+}
+
+.Footer
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #333;
+}
+
+td.footer
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #333;
+}
+
+a.footer
+{	
+font-weight: normal;
+color: #0000FF;
+}
+
+a.footer:hover
+{
+font-weight: normal;
+color: #0000FF;
+text-decoration: underline;
+}
+
+a.footer:visited
+{
+font-weight: normal;
+color: #333333;
+text-decoration: underline;
+}
+
+a.button
+{
+font-size: 12px;
+font-weight: normal;
+color: #000000;
+text-decoration: none;
+}
+
+a.button:hover
+{
+font-size: 12px;
+font-weight: normal;
+color: #000000;
+text-decoration: none;
+}
+
+a.button:visited
+{
+font-size: 12px;
+font-weight: normal;
+color: #000000;
+text-decoration: none;
+}
+
+a.buttonOff
+{
+font-size: 12px;
+font-weight: normal;
+color: #666666;
+text-decoration: none;
+}
+
+a.buttonOff: hover
+{
+font-size: 12px;
+font-weight: normal;
+color: #666666;
+text-decoration: none;
+}
+a.buttonOff: visited
+{
+font-size: 12px;
+font-weight: normal;
+color: #666666;
+text-decoration: none;
+}
+
+a.BuyButton
+{
+font-size: 13px;
+font-weight: bold;
+color: #FFFFFF;
+text-align: center;
+text-decoration: none;
+}
+
+a.BuyButton:hover
+{
+font-size: 13px;
+font-weight: bold;
+color: #28E528;
+text-align: center;
+text-decoration: none;
+}
+
+a.BuyButton:visited
+{
+font-size: 13px;
+font-weight: bold;
+color: #FFFFFF;
+text-align: center;
+text-decoration: none;
+}
+
+.CountNumber
+{
+font-family: Arial, Helvetica;
+font-size: 24px;
+font-weight: bold;
+color: #E30707;
+font-style: italic;
+}
+
+.Hilite
+{
+font-family: Arial, Helvetica;
+font-size: 16px;
+font-weight: bold;
+color: #E30707;
+font-style: italic; margin: 8px 2px 2px 0px;
+}
+
+.HiliteInline
+{
+font-weight: bold;
+color: #E30707;
+font-style: italic;
+}
+
+
+a.ExtendButton 
+{ 
+font-size: 13px; 
+font-weight: bold; 
+color: black; 
+text-align: center; 
+text-decoration: none;
+}
+
+a.ExtendButton:hover 
+{ 
+font-size: 13px; 
+font-weight: bold; 
+color: #3170D9; 
+text-align: center; 
+text-decoration: none;
+}
+
+a.ExtendButton:visited 
+{ 
+font-size: 13px; 
+font-weight: bold; 
+color: black; 
+text-align: center; 
+text-decoration: none;
+}
+
+#Wordmark
+{
+position:absolute;
+top:98;
+left:73;
+}
+
+#Boxshot
+{
+position:absolute;
+top:115;
+right: 80;
+}
+
+#Countdown		
+{
+position: absolute;
+right: 80;
+left: 535px;
+top: 315px;
+visibility: visible;
+}
+
+.headlinetext
+{
+font-family: Arial, Helvetica;	
+font-size: 17px;	
+font-weight: bold;	
+color: #333333; 	
+}
+
+.smallheadlinetext
+{
+font-family: Arial, Helvetica;	
+font-size: 13px;	
+font-weight: bold;	
+color: #000000; 	
+}
+
+.subheadline,.subheadlineText
+{
+font-family: Arial, Helvetica;	
+font-size: 11px;	
+font-weight: bold;	
+color: #333333; 
+}
+
+.field
+{
+background: #F6F6F6;
+border: 1px solid #84A3BF;
+font-family: Arial, Helvetica;	
+font-size: 11px;	
+color: #000000;
+}
+
+button, .button
+{
+border: outset 2px;
+color: #000000;
+background: #F6F6F6;
+height: 20px;
+font-size: 12px;
+margin:0;
+}
+
+button:hover, .button:hover
+{
+border: #84A3BF;
+}
+
+#BuyMe
+{
+position: absolute;
+top: 250;
+right: 90;
+}
+
+#WindowTitle
+{
+position: absolute;
+top: 58;
+left: 60;
+font-family: Arial, Helvetica;
+font-size: 13px;
+font-weight: bold;
+color: #FFF;
+}
+
+#WindowClose
+{
+position: absolute;
+top: 55px;
+right: 55;
+left: 660px;
+}
+
+#BottomButtonLeft
+{
+position: absolute;
+Bottom: 65;
+left: 65;
+}
+
+#BottomButtonRight
+{
+position: absolute;
+Bottom: 65;
+right: 65;
+}
+
+.AppList
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #000;
+vertical-align: middle;
+text-transform: inherit;
+}
+
+.ButtonText
+{
+font-family: Arial, Helvetica;
+font-size: 12px;
+font-weight: normal;
+color: #000;
+text-align: center;
+text-transform: inherit;
+}
+
+.ButtonTextGrey
+{
+font-family: Arial, Helvetica;
+font-size: 12px;
+font-weight: normal;
+color: #FFFFFF;
+text-align: center;
+text-transform: inherit;
+}
+
+.ButtonTextActive
+{
+font-family: Arial, Helvetica;
+font-size: 12px;
+font-weight: bold;
+color: #000;
+text-align: center;
+}
+
+.TextField
+{
+font-family: Arial, Helvetica;
+font-size: 11px;
+font-weight: normal;
+color: #000;
+text-align: left;
+text-transform: inherit;
+}
+
+#BodyContent
+{
+position: absolute;
+top: 200px;
+left: 82px;
+width: 475;
+font-family: Arial, Helvetica;
+font-size: 10px;
+font-weight: bold;
+color: #333;
+}
+
+#WelcomeContent
+{
+position: absolute;
+top: 200;
+left: 80;
+width: 450px;
+font-family: Arial, Helvetica;
+font-size: 10px;
+font-weight: bold;
+color: #333;
+height: 251px;
+}
+
+#BodySetup
+{
+position: absolute;
+top: 200px;
+left: 81px;
+width: 450px;
+font-family: Arial, Helvetica;
+font-size: 10px;
+font-weight: bold;
+color: #333;
+height: 220px;
+}
+
+#BodyFooter
+{
+position: absolute;
+bottom: 115;
+left: 80px;
+width: 450px;
+font-family: Arial, Helvetica;
+font-size: 9px;
+font-weight: normal;
+color: #333;
+top: 420px;
+height: 43px;
+}
+
+.OuterContainer
+{
+height: 100%;
+width: 100%;
+padding-right: 0px;
+padding-left: 0px;
+padding-top: 0px;
+padding-bottom: 0px;
+margin: 0px;
+}
+
+
+.reg_welcome_text
+{
+float: left;
+padding: 15px;
+}
+
+.reg_welcome_text, div.reg_welcome_text p, div.reg_welcome_text li
+{
+font-size: 12px;
+}
+
+div.reg_welcome_text p, div.reg_welcome_text li
+{
+line-height: 18px;
+}
+
+
+
+
+
+.reg_welcome2_text
+{
+float: left;
+padding-top: 1px;
+}
+
+.reg_welcome2_text, div.reg_welcome2_text p, div.reg_welcome2_text li
+{
+font-size: 12px;
+padding-top:3px;
+}
+
+div.reg_welcome2_text p, div.reg_welcome2_text li
+{
+line-height: 14px;
+}
+
+
+
+
+.reg_welcome3_text
+{
+float: left;
+}
+
+.reg_welcome3_text, div.reg_welcome3_text p, div.reg_welcome3_text li
+{
+font-size: 12px;
+padding-top:4px;
+}
+
+div.reg_welcome3_text p, div.reg_welcome3_text li
+{
+line-height: 12px;
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title></title>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<meta http-equiv="MSThemeCompatible" content="yes">
+		<link href="shared/ccc.css" type="text/css" rel="STYLESHEET">
+		<script type="text/javascript" src="shared/ccc.js"></script>
+	</head>
+	<body onload="location='pcucmd://ContainerLoaded/'" style="overflow:hidden;" >
+		<!--
+	        This is the outer most container with the border with shade
+	    -->
+		<table id="outerContainer" class="OuterContainer" cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td>
+					<table id="banner" class="BannerStyle" cellspacing="0" cellpadding="0">
+						<tr >
+							<td>
+								<!-- this is the 55 area that holds the banner-->
+								<div id="divTrialRemainCounter" style="display:none">
+				            <table id="counterTable" border="0">
+									<!-- this is the sub area for the days remaining counter-->
+									<!-- This is the trail count down box -->
+									<tr>
+									<td><div id="divTrialSeperator"><img src="shared/images/TrialCounter/separator_daysleft.gif" /></div></td>
+										<td>
+										    <div id="divCountOnBanner">
+										    </div>
+										</td>
+                                        <td>
+                                            <div id="divTrialCounterSpace">&nbsp;</div>
+											</td>
+
+											<td>
+												<div id="divDaysLeftOnBanner">DAYS<br />
+												LEFT</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="message" valign="top" >
+				<td style="width:100%;height:100%;" align="center" style="padding:5px; padding-top:4px; padding-bottom:6px">
+					<!-- this is the 600x343 area that contains the main content-->
+					<iframe style="width:100%;height:100%;margin:0px;padding:0px;border:none;" align="center" id="Content" name="Content" frameBorder="0" onload="location='pcucmd://FrameLoaded'"></iframe>
+
+				</td>
+
+			</tr>
+			<tr id="tdProgress">
+				<td style="padding-left:5px; padding-right:5px; padding-top:0px; padding-bottom:4px;">
+					<!-- this is the 600x15 area for the progress bar-->
+					<div id="divUnderSlider">
+						<div id="divOverSlider">
+							<div id="divPBStart"></div>
+							<div id="divPBEnd"></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td id="ButtonBar" style="padding-left:3px;padding-right:2px;padding-top:0px;padding-bottom:2px;">
+				<!-- Contents in this area comes from the contents page -->
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

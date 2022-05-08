@@ -1,0 +1,175 @@
+
+				<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">		    
+				<html>
+					<head>
+						<meta http-equiv="MSThemeCompatible" content="yes">
+						<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+						
+								<link rel="stylesheet" type="text/css" href='..\genericSkin\1248383926732.txt.css'/>
+								
+						
+							
+							<link href="../shared/ccc.css" type="text/css" rel="STYLESHEET" />
+<script src="../shared/ccc.js"></script>
+<script language="javascript">
+<!--
+	function onpageload()
+	{
+		location="pcucmd://FrameDataLoaded/"; 
+		location="pcucmd://CanContinue?enable=false";
+	}
+
+	function OnTxtFieldChanging()
+	{
+		var oAct = document.getElementById("txtActivationCode");
+		var strAct = "";
+
+		if (oAct != null)
+		{
+			strAct = oAct.value;
+			strAct = removeAllSpaces(strAct);
+			location = "pcucmd://StoreParam?activationcode=" + strAct;
+		}	
+
+		var bEnable = false;
+		if (oAct != null &&
+			ValidateActCode(strAct))
+		{
+			location="pcucmd://CanContinue?enable=true";
+			bEnable = true;
+		}
+		if (!bEnable)
+		{
+			location="pcucmd://CanContinue?enable=false";
+		}
+		var strSerial = getParamVal("serial");
+		if (strSerial != "")
+		{
+			location = "pcucmd://StoreParam?key=" + strSerial;
+		}
+	}
+	function OnConnect()
+	{
+		location="pcucmd://Connect";
+		location="pcucmd://Activate?admin=yes&condition=yes";
+		location="pcucmd://Next?condition=true";
+	}
+	function OnPhone()
+	{
+		location="pcucmd://SetSequence?name=activation_offline";
+	}
+-->
+</script>
+<style>
+	input { background-color: #e8e8e8; }
+</style>
+						
+						
+					</head>
+			    	
+			    	<body onload="onpageload();" tabindex="-1">
+							
+							
+								
+								
+								
+							
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+	
+
+
+<div id="ButtonBar" style="display: none;">
+	<div style="width: 100%; height: 100%; padding: 0px; margin: 0px; border: none;" id="Table1">
+		<div style="float:left;text-align:left">
+			<table align="center">
+				<tr>
+					
+				</tr>
+			</table>
+		</div>
+		<div style="float:right;text-align:right">
+			<table align="center">
+				<tr>
+					<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='B' id='pcubtnback' name='pcubtnback'  onclick="document.location='pcucmd://SetLastSequence'"><u>B</u>ack</button></td>
+<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='o' id='pcubtncontinue' name='pcubtncontinue'  onclick="OnUnlock()">C<u>o</u>ntinue</button></td>
+<td><button style='overflow:visible;width:100%' class='buttonBar' type='button' accessKey='C' id='pcubtncancel' name='pcubtncancel'  onclick="document.location='pcucmd://Cancel'"><u>C</u>ancel</button></td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+	
+
+
+						
+						
+							
+								<div id="pcu_data" style="display:none;">
+									PageDimension:613,490
+								</div>
+							
+							
+						
+						
+							
+							<style>
+input {padding: 3px;}
+</style>
+<p style="padding: 10px">Choose the appropriate option below:</p>
+<table style="width: 100%" cellpadding="0" cellspacing="0">
+	<tr style="vertical-align:top">
+		<td style="padding: 10px; width: 33%; border-right-width:thin; border-right-color:Silver; border-right-style:solid">
+			<p><B>Connect to Internet?</B></p>
+			<p>Connect to the Internet to activate your product.
+			Corel Account sign-in may be required.</p>
+		</td>
+		<td style="padding:10px; width:33%; border-right-width:thin; border-right-color:Silver; border-right-style:solid;">
+			<p><B>Working off-line?</B></p>
+			<p>Contact a Corel Customer Service representative in your area to activate the product.</p>
+		</td>
+		<td style="width: 34%; vertical-align:baseline; padding: 10px">
+			<p><B>Already have an activation code?</B></p>
+			<p>Enter your Activation code below and choose continue to proceed.</p>
+		</td>
+	</tr>
+	<tr>
+		<td style="border-right: silver thin solid; vertical-align: baseline; width: 33%">
+			<p align="center">
+			<button accesskey="N" type="button" ID="btnConnect" NAME="btnConnect" onclick="OnConnect()">Co<u>n</u>nect</button>
+			</p>
+		</td>
+		<td style="border-right: silver thin solid; vertical-align: baseline; width: 33%">
+			<p align="center">
+			<button accesskey="T" type="button" ID="btnPhone" NAME="btnPhone" onclick="OnPhone()">Con<u>t</u>act Corel</button>
+			</p>
+		</td>
+		<td style="vertical-align: baseline">
+			<p align="center">
+			<input type="text" style="margin-left:5px; margin-right:5px; width: 195px" id="txtActivationCode" onpropertychange="OnTxtFieldChanging()" />
+			</p>
+		</td>
+	</tr>
+</table>
+						
+					</body>
+				</html>
+				

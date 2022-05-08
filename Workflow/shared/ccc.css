@@ -1,0 +1,542 @@
+v\:* { behavior: url(#default#VML);}
+body,table,tr,td,input,select
+{
+	font-family:Arial;
+	font-size:11px; 
+	color: #333333;	
+	margin:0;
+	padding: 0;
+}
+body
+{
+	overflow:auto;
+	margin:1,1,1,1;
+	background:white;
+}
+td
+{
+	padding:0;
+}
+image
+{
+	border: 0px;
+}
+p 				
+{	
+   font-family: Arial, Helvetica;	
+   font-size: 11px;	
+   font-weight: normal;	
+   color: #333333; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+ul
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+li 			
+{	
+   font-family: Arial, Helvetica;	
+   font-size: 11px;	
+   font-weight: normal;	
+   color: #333333; 
+}
+
+input
+{
+	font-size: 13px;
+	vertical-align:middle;
+}
+button
+{
+	font-family:Arial;
+	font-size:12px; 
+	height: 22px;
+	margin:0;
+	margin-left:5px;
+	margin-right:5px;
+}
+h1				
+{	
+  	font-family: Arial, Helvetica;	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #333333; margin: 2px 2px 2px 0px;	
+}
+h2 			
+{	
+	font-family: Arial, Helvetica;	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #333333;	
+	font-style: italic;
+	margin: 2px 2px 2px 0px;	
+}
+h3				
+{	
+	font-family: Arial, Helvetica;	
+	font-size: 11px;	
+	font-weight: bold;	
+	color: #333333;	
+	margin: 2px 2px 2px 0px;	
+}
+h4				
+{	
+	font-family: Arial, Helvetica;	
+	font-size: 16px;	
+	font-weight: bold;	
+	color: #E30707; 	
+	font-style: italic;	
+	margin: 2px 2px 2px 0px;	
+}
+
+.title-small
+{
+	font-size:13px; 
+}
+
+.smallheadlinetext
+{
+	font-family: Arial, Helvetica;	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #000000; 	
+}
+
+a.BuyButton				
+{	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #FFFFFF;		
+	text-align: center;		
+	text-decoration: none;
+}
+a.BuyButton:hover		
+{	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #28E528;	
+	text-align: center;		
+	text-decoration: none;
+}
+a.BuyButton:visited	
+{	
+	font-size: 13px;	
+	font-weight: bold;	
+	color: #FFFFFF;		
+	text-align: center;		
+	text-decoration: none;
+}
+.Wordmark
+{
+	margin-bottom:0px;
+}
+.Logo
+{
+    position:absolute;
+    left:425px;
+}
+.LogoCaption
+{
+    color:#2a567f;
+	margin-bottom:11px;
+	font-family:arial,helvetica;
+	font-size:8pt; 
+}
+.BuyNow
+{
+    color:Red;
+    font-size:20;
+    font-weight:bold;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+.FreeText
+{
+    font-size:18;
+    font-weight:bold;
+}
+.MainText
+{
+    width:410; 
+}
+.OuterContainer
+{
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+
+}
+
+/*	This is the start of the CSS for the trail count down box */
+
+/* This controls the width of the entire box */
+#divTrialRemain
+{
+	width:70px;
+	text-align:center;
+}
+
+.PromoTD
+{
+	width:60px;
+	vertical-align:bottom;
+	text-align:right;
+}
+	
+
+/* This controls the properties of the inner box */
+#divCountDown
+{
+	margin:0px;
+
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+/* This section is for the box border */
+#bdrTop, #bdrLft, #bdrBtm, #bdrRgt
+{
+	margin:0px;
+	padding:0px;
+}
+
+#bdrTop
+{
+	background-position:0% 0%;
+	background-repeat:repeat-x;
+}
+
+#bdrLft
+{
+	background-position:0% 0%;
+	background-repeat:repeat-y;	
+}
+
+#bdrBtm
+{
+	background-position:0% 100%;
+	background-repeat:repeat-x;	
+}
+
+#bdrRgt
+{
+	background-position:100% 0%;
+	background-repeat:repeat-y;
+}
+
+#cnrTL, #cnrTR, #cnrBL, #cnrBR
+{
+	background-repeat:no-repeat;
+}
+
+#cnrTL
+{
+	background-position:0% 0%;
+}
+
+#cnrTR
+{
+	background-position:100% 0%;
+}
+
+#cnrBL
+{
+	background-position:0% 100%;
+}
+
+#cnrBR
+{
+	background-position:100% 100%;
+}
+
+/* This section is for the progress bar */	
+#divUnderSlider, #divOverSlider
+{
+	padding:0px;
+	margin:0px;
+	height:13px;
+}
+
+#divUnderSlider
+{
+	border:solid 1px rgb(123,123,123);
+	background-image:url(Images/TrialCounter/grey_bkg.gif);
+}
+
+#divOverSlider
+{
+	background-image:url(Images/TrialCounter/pb.gif);
+	float:left;
+	overflow:hidden;
+}
+
+/* This section is for the text that's contained in the box */
+.BannerStyle
+{
+	width:600px;
+	height:55px; 
+	text-align: center;
+	background-image:url(Images/banner.jpg);
+	background-repeat:no-repeat;
+	background-position:left;
+	display:block;
+	padding:0px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:3px;
+	margin-bottom:0px
+}
+
+.buttonBar
+{
+	font-family:Arial;
+	font-size:11px; 
+	color: #333333;	
+	margin:0px;
+	padding:0px;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+#divCount
+{
+	width:80px;
+	font-weight:bold;
+	font-family:Tahoma;
+	font-size:30pt;
+	background-color:Black;
+}
+
+#divCountOnBanner
+{
+	font-weight:bold;
+	font-family:Arial;
+	font-size:30pt;
+	text-align:center;
+}
+#divDaysLeft
+{
+	width:80px;
+	border-top: solid 1px #FFFFFF;
+	font-weight:bold;
+	font-family:Tahoma;
+	font-size:11pt;
+	color:#ffffff;
+	text-align:center;
+}
+#divDaysLeftOnBanner
+{
+	font-weight:bold;
+	font-family:Arial;
+	font-size:11pt;
+	text-align:center;
+}
+#divTrialRemainCounter
+{
+	float:right;
+	margin-right:10px;
+	
+}
+#divTrialCounterSpace
+{
+	width:5px;
+}
+#divTrialSeperator
+{
+	width:10px;
+}
+#divPBStart, #divPBEnd
+{
+	width:13px;
+	margin:0px;
+	padding:0px;
+}
+
+#divPBStart
+{
+	float:left;
+	font-size:10px;
+	background-image:url(Images/TrialCounter/pb_start.gif);
+}
+
+#divPBEnd
+{
+	float:right;
+	font-size:10px;
+	background-image:url(Images/TrialCounter/pb_end.gif);
+}
+
+#divText
+{
+	text-align:center;
+}
+
+/* This is the end of the trail counter CSS */
+
+/* Download/Installation CSS*/
+
+#msgcontainer
+{
+    padding-right: 0px;  
+    padding-left: 0px;  
+    padding-bottom: 0px;  
+    margin: 5px;  
+    padding-top: 0px; 
+    height:100%;
+    border: 0;
+}
+
+#bannertopleft
+{
+    background-position: left bottom;  
+    width: 15px;  
+    background-repeat: no-repeat;  
+    height: 14px; 
+    background-image:url(Images/frame/topleft.jpg);
+}
+
+#bannertopcenter
+{
+    background-position: center bottom;  
+    background-repeat: repeat-x;  
+    height: 14px; 
+    background-image:url(Images/frame/top.jpg);
+}
+
+#bannertopright
+{
+    background-position: right bottom;  
+    width: 15px;  
+    background-repeat: no-repeat; 
+    height: 14px; 
+    background-image:url(Images/frame/topright.jpg);
+}
+
+#bannercenter
+{
+   height:180;
+}
+
+#bannercenterleft
+{
+    background-position: left 50%;  
+    background-repeat: repeat-y;  
+    background-image:url(Images/frame/leftside.jpg);
+}
+
+#bannercentercentertable
+{
+    padding-right: 0px;  
+    padding-left: 0px;  
+    padding-bottom: 0px;  
+    margin: 0px;  
+    padding-top: 0px; 
+    height:100%;
+}
+
+#bannercenterright
+{
+    background-position: right 50%;  
+    background-repeat: repeat-y; 
+    background-image:url(Images/frame/rightside.jpg);
+}
+
+#bannerbottomleft
+{
+    background-position: left top;  
+    width: 15px;  
+    background-repeat: no-repeat;  
+    height: 25px; 
+    background-image:url(Images/frame/botttomleft.jpg);
+}
+
+#bannerbottomcenter
+{
+    background-repeat: repeat-x;  
+    height: 25px;  
+    background-position: center top; 
+    background-image:url(Images/frame/bottom.jpg);
+}
+
+#bannerbottomright
+{
+    background-position: right top;  
+    width: 15px;  
+    background-repeat: no-repeat;  
+    height: 25px; 
+    background-image:url(Images/frame/bottomright.jpg);
+}
+.dlgdescription
+{
+    font-size: 16px; 
+    color: gray; 
+    font-weight: bold
+}
+
+#installnowtable
+{
+    padding-right: 0px;  
+    padding-left: 0px;  
+    padding-bottom: 0px;  
+    margin: 5px;  
+    padding-top: 0px; 
+    height:100%;
+    border: 0
+}
+
+.installnow
+{
+    cursor: pointer; 
+    cursor: hand;
+}
+
+#installnowcenter
+{
+	background-repeat: repeat-x;  
+    background-image:url(Images/installoption/installnow_now.png); 
+}
+
+.installnowtext
+{
+    color:white;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration:none;
+}
+
+.graytext
+{
+    color: gray;
+}
+
+.remindertext
+{
+    font-size :11px;
+}
+
+.downloadingtext
+{
+	padding-left: 5px;
+}
+
+#tdProgress
+{
+	height:15px;
+}
+
+#dimerrormessagetable
+{
+    padding-right: 0px;  
+    padding-left: 0px;  
+    padding-bottom: 0px;  
+    margin: 0px;  
+    padding-top: 0px; 
+    height:100%;
+    border: 0
+}
+/* This is the end of the Download/Installation CSS*/
