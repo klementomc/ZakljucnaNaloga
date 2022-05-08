@@ -26,16 +26,17 @@
 #define sklep6_MIN -0.0175
 #define sklep7_MIN -2.8973
 
+#define n_iter 1000
+#define thershP 10^-4
+#define thresh0 10^-4
+
+
 using namespace std;
+
+int stevec = 0;
 
 typedef Eigen::Matrix<double, 3, 1> vektor3d;//typdef za seznam
 typedef Eigen::Matrix<double, 7, 1> vektor7d;//typdef za seznam
-
-//tu bojo zacetne tocke iz kerih zračunaš razdaljo
-std::map<vektor3d, vektor7d> pozicija_koti;
-
-vektor3d pozicija1;
-vektor7d koti1;
 
 vector<double> seznam = {0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0}; // nastavi prave vrednosti kotov
 
@@ -134,6 +135,21 @@ Eigen::Quaterniond kvaternion(Eigen::MatrixXd M)
     return kvaternion;
 }
 
+//naredi vektor iz rotacijse matrike oblike {n,eta}, kjer n predstavlja realni del eta pa imaginarni
+
+Eigen::Vector4d RotMat2Qvec(Eigen::MatrixXd M){
+    Eigen::Matrix3d RotMat;
+    RotMat << M(0, 0), M(0, 1), M(0, 2),
+              M(1, 0), M(1, 1), M(1, 2),
+              M(2, 0), M(2, 1), M(2, 2);
+
+    Eigen::Quaterniond q(RotMat);
+    Eigen::Vector4d vektor;
+    vektor << q.w(), q.x(), q.y(), q.z();
+    
+    return vektor;
+}
+
 Eigen::Vector3d RotMat2rpy(Eigen::MatrixXd M)
 {
 
@@ -154,6 +170,29 @@ Eigen::Vector3d RotMat2rpy(Eigen::MatrixXd M)
     return rpy;
 }
 
+Eigen::Matrix3d RotMat(double x, double y, double z){
+    Eigen::Matrix3d Rx;
+    Eigen::Matrix3d Ry;
+    Eigen::Matrix3d Rz;
+    Eigen::Matrix3d R;
+
+    Rx << 1,0,0,
+          0,cos(x),-sin(x),
+          0,sin(x),cos(x);
+
+    Ry << cos(y),0,sin(y),
+          0,1,0
+          -sin(y),0,cos(y);
+    
+    Rz << cos(z),-sin(z),0,
+          sin(z),cos(z),0,
+          0,0,1;
+    
+    R = Rz*Ry*Rx;
+
+    return R;
+}
+
 Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj){
 
     std::vector<double> MAX = {sklep1_MAX,sklep2_MAX,sklep3_MAX,sklep4_MAX,sklep5_MAX,sklep6_MAX,sklep7_MAX};
@@ -162,29 +201,23 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj){
     Eigen::VectorXd TrenutniKoti;
     for (int i = 0; i < 7; i++){TrenutniKoti(i) = seznam[i];}
 
-    while (bool napaka = true){
+    //naredimo kvaternion vektor iz željenih kotov
+    Eigen::Matrix3d Zacetna_rotacijska_matrika;
+    Zacetna_rotacijska_matrika = RotMat(T_cilj(3),T_cilj(4),T_cilj(5));
+    Eigen::Vector4d Zacetni_kvaternion_vektor = RotMat2Qvec(Zacetna_rotacijska_matrika);
 
-        Eigen::MatrixXd DirektnaKinematika_zacetek(4, 4);
-        DirektnaKinematika_zacetek = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
+    float neP = 1.00;// vrednosti za izračun napake
+    float neO = 1.00;// vrednosti za izračun napake 
 
-        //določim začetno pozicijo x,y,z ter orientacijo
-        Eigen::VectorXd Pozicija (6);
-        Eigen::VectorXd Orientacija = RotMat2rpy(DirektnaKinematika_zacetek);
-        Eigen::VectorXd Pozicija;
-        Pozicija << DirektnaKinematika_zacetek(0, 3), DirektnaKinematika_zacetek(1, 3), DirektnaKinematika_zacetek(2, 3), Orientacija(0), Orientacija(1), Orientacija(2);
+    while(stevec < n_iter || (neP<thershP && neO<thresh0)){
 
-        Eigen::VectorXd X (6);
-        X = T_cilj-Pozicija;
-        Eigen::VectorXd dx (6);
-        dx = 0.1*X;
-
-        Eigen::MatrixXd J = Jakobi(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
-        Eigen::MatrixXd PsevdoJ = pseudoInverse(J);
+        Eigen::MatrixXd J;
+        J = Jakobi(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
+        Eigen::MatrixXd FK;
+        FK = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
 
         
     }
-
-    return; 
 }
 
 int main(){
