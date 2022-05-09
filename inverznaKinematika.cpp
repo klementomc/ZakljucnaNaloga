@@ -27,8 +27,8 @@
 #define sklep7_MIN -2.8973
 
 #define n_iter 1000
-#define thershP 10 ^ -4
-#define thresh0 10 ^ -4
+#define thershP 0.8
+#define thresh0 0.8
 #define koef_alpha 0.1
 
 using namespace std;
@@ -235,7 +235,7 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
     Eigen::Vector3d kvaternion_vektor_trenutni_ijk;
 
     //cout << "3----------------------------" << endl;
-    while (stevec < n_iter /*&& (neP < thershP && neO < thresh0)*/)
+    while (!(neP < thershP && neO < thresh0) && stevec < n_iter)
     {
 
         Eigen::MatrixXd J(6, 7);
@@ -264,6 +264,7 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
 
         stevec += 1;
     }
+    cout << stevec <<endl;
     stevec = 0;
     for (int u = 0; u < 7; u++)
     {
