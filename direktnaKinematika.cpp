@@ -135,5 +135,5 @@ int main(){
     cout << DirektnaKinematika(0, 0, 0, 0, 0, 0, 0) << endl;
     cout << DirektnaKinematika(0, 1.0323, 0, 0.8247, 0, 0.2076, 0) << endl;
     cout << RotMat2rpy(MAT) << endl;
-    cout << DirektnaKinematika(0.512333, 0.632566, 0.653824, 0.797273, -0.687335, 0.106895, -0.359744) << endl;
+    cout << DirektnaKinematika(0.141693, -0.939929, -1.48537, 0.373965, -0.786864, 4.88589, 6.23916) << endl;
 }

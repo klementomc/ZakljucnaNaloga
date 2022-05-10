@@ -27,9 +27,9 @@
 #define sklep7_MIN -2.8973
 
 #define n_iter 1000
-#define thershP 0.8
-#define thresh0 0.8
-#define koef_alpha 0.1
+#define thershP 0.0001
+#define thresh0 0.0001
+#define koef_alpha 0.01
 
 using namespace std;
 
@@ -38,7 +38,7 @@ int stevec = 0;
 typedef Eigen::Matrix<double, 3, 1> vektor3d; // typdef za seznam
 typedef Eigen::Matrix<double, 7, 1> vektor7d; // typdef za seznam
 
-vector<double> seznam = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // nastavi prave vrednosti kotov
+vector<double> seznam = {0.0, 0.9, 0.0, 0.9, 0.0, 0.1, 0.0}; // nastavi prave vrednosti kotov
 
 // Izračun psevdoinverzne matrike Moor-Penrose inverse
 // method for calculating the pseudo-Inverse as recommended by Eigen developers
@@ -233,6 +233,7 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
     Eigen::Vector3d Trenutna_pozicija;
     Eigen::Vector3d Trenutna_orientacija;
     Eigen::Vector3d kvaternion_vektor_trenutni_ijk;
+    Eigen::VectorXd dq (7);
 
     //cout << "3----------------------------" << endl;
     while (!(neP < thershP && neO < thresh0) && stevec < n_iter)
@@ -257,7 +258,8 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
         vektor_zdruzen_eP_eO << eP(0), eP(1), eP(2), eO(0), eO(1), eO(2);
         Eigen::MatrixXd Pseudo_J(7, 6); //
         Pseudo_J = pseudoInverse(J);
-        TrenutniKoti = TrenutniKoti + koef_alpha * (Pseudo_J * (Kp_Ko * vektor_zdruzen_eP_eO));
+        dq = koef_alpha * (Pseudo_J * (Kp_Ko * vektor_zdruzen_eP_eO));
+        TrenutniKoti = TrenutniKoti + dq;
 
         neP = eP.maxCoeff();
         neO = eO.maxCoeff();
@@ -276,7 +278,12 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
 int main()
 {
     cout << "a" <<endl;
+    cout << "______________________________________________" << endl;
+    cout << "" << endl;
     Eigen::VectorXd test(6);
     test << 0.4, 0, 0.71, 0, pi, 0;
-    cout << InverznaKinematika(test);
+    cout << InverznaKinematika(test) <<endl;
+    cout << "______________________________________________" << endl;
+    cout << "" << endl;
+    cout << DirektnaKinematika(seznam[0], seznam[1], seznam[2], seznam[3], seznam[4], seznam[5], seznam[6]) <<endl;
 }
