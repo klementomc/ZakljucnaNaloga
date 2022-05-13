@@ -27,9 +27,9 @@
 #define sklep7_MIN -2.8973
 
 #define n_iter 1000
-#define thershP 0.0001
-#define thresh0 0.0001
-#define koef_alpha 0.01
+#define thershP 0.01
+#define thresh0 0.01
+#define koef_alpha 0.6
 
 using namespace std;
 
@@ -38,7 +38,7 @@ int stevec = 0;
 typedef Eigen::Matrix<double, 3, 1> vektor3d; // typdef za seznam
 typedef Eigen::Matrix<double, 7, 1> vektor7d; // typdef za seznam
 
-vector<double> seznam = {0.0, 0.9, 0.0, 0.9, 0.0, 0.1, 0.0}; // nastavi prave vrednosti kotov
+vector<double> seznam = {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1}; // nastavi prave vrednosti kotov
 
 // Izračun psevdoinverzne matrike Moor-Penrose inverse
 // method for calculating the pseudo-Inverse as recommended by Eigen developers
@@ -193,8 +193,7 @@ Eigen::Matrix3d RotMat(double x, double y, double z)
     return R;
 }
 
-Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
-{
+Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj){
 
     std::vector<double> MAX = {sklep1_MAX, sklep2_MAX, sklep3_MAX, sklep4_MAX, sklep5_MAX, sklep6_MAX, sklep7_MAX};
     std::vector<double> MIN = {sklep1_MIN, sklep2_MIN, sklep3_MIN, sklep4_MIN, sklep4_MIN, sklep6_MIN, sklep7_MIN};
@@ -207,12 +206,12 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
     // matrika KP in KO
     Eigen::MatrixXd Kp_Ko(6, 6);
 
-    Kp_Ko << 1, 0, 0, 0, 0, 0,
-             0, 1, 0, 0, 0, 0,
-             0, 0, 1, 0, 0, 0,
-             0, 0, 0, 1, 0, 0,
-             0, 0, 0, 0, 1, 0,
-             0, 0, 0, 0, 0, 1;
+    Kp_Ko << 1.5, 0, 0, 0, 0, 0,
+             0, 1.5, 0, 0, 0, 0,
+             0, 0, 1.5, 0, 0, 0,
+             0, 0, 0, 1.5, 0, 0,
+             0, 0, 0, 0, 1.5, 0,
+             0, 0, 0, 0, 0, 1.5;
 
     // naredimo kvaternion vektor iz željenih kotov
     Eigen::Matrix3d Zacetna_rotacijska_matrika;
@@ -259,10 +258,34 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
         Eigen::MatrixXd Pseudo_J(7, 6); //
         Pseudo_J = pseudoInverse(J);
         dq = koef_alpha * (Pseudo_J * (Kp_Ko * vektor_zdruzen_eP_eO));
+
         TrenutniKoti = TrenutniKoti + dq;
 
-        neP = eP.maxCoeff();
-        neO = eO.maxCoeff();
+        //tu pride koda za prilagoitev sklepov
+
+        for(int i = 0; i<=6; i++){
+            if(TrenutniKoti(i) < -2 * pi){
+                while(TrenutniKoti(i) < 0){TrenutniKoti(i) = TrenutniKoti(i)+(2*pi);}
+                if(TrenutniKoti(i)>0){TrenutniKoti(i)=TrenutniKoti(i)-(2*pi);}//pogoj da se nebo predznak spremenu
+            }
+            if (TrenutniKoti(i) > 2 * pi){
+                while (TrenutniKoti(i) > 0){TrenutniKoti(i) = TrenutniKoti(i) - (2 * pi);}
+                if (TrenutniKoti(i) < 0){TrenutniKoti(i) = TrenutniKoti(i) + (2 * pi);} // pogoj da se nebo predznak spremenu
+            }
+        }
+
+        for(int i = 0; i<=6; i++){
+            if (TrenutniKoti(i) < MIN[i]){
+                TrenutniKoti(i) = MIN[i];
+            }
+
+            if (TrenutniKoti(i) > MAX[i]){
+                TrenutniKoti(i) = MAX[i];
+                }
+        }
+
+        neP = sqrt(pow(eP(0), 2)+pow(eP(1), 2)+pow(eP(2), 2));
+        neO = sqrt(pow(eO(0), 2) + pow(eO(1), 2) + pow(eO(2), 2));
 
         stevec += 1;
     }
@@ -275,8 +298,7 @@ Eigen::VectorXd InverznaKinematika(Eigen::VectorXd T_cilj)
     return TrenutniKoti;
 }
 
-int main()
-{
+int main(){
     cout << "a" <<endl;
     cout << "______________________________________________" << endl;
     cout << "" << endl;
