@@ -131,9 +131,9 @@ Eigen::Vector3d RotMat2rpy(Eigen::MatrixXd M)
 }
 
 int main(){
-    Eigen::MatrixXd MAT = DirektnaKinematika(0, 0, 0, 0, 0, 0, 0);
-    cout << DirektnaKinematika(0, 0, 0, 0, 0, 0, 0) << endl;
-    cout << DirektnaKinematika(0, 1.0323, 0, 0.8247, 0, 0.2076, 0) << endl;
+    Eigen::MatrixXd MAT = DirektnaKinematika(0, 1.0323, 0, 0.8247, 0, 0.2076, 0);
+    //cout << DirektnaKinematika(0, 0, 0, 0, 0, 0, 0) << endl;
+    cout << DirektnaKinematika(0, 0, 0, (sklep4_MAX+sklep4_MIN)/2, 0,(sklep6_MAX+sklep6_MIN)/2, 0) << endl;
     cout << RotMat2rpy(MAT) << endl;
-    cout << DirektnaKinematika(0.141693, -0.939929, -1.48537, 0.373965, -0.786864, 4.88589, 6.23916) << endl;
+    cout << DirektnaKinematika(0, -17.2 * pi / 180, 0, -126 * pi / 180, 0, 115 * pi / 180, 45 * pi / 180) << endl;
 }
