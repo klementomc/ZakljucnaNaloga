@@ -9,6 +9,7 @@
 #include <Eigen/SVD>
 #include <time.h>
 #include <map>
+#include <jakobi.h>
 
 #define sklep1_MAX 2.8973
 #define sklep2_MAX 1.7628
@@ -30,9 +31,10 @@
 #define thershP 0.001
 #define thresh0 0.001
 #define koef_alpha 0.6
+#define pi 2 * acos(0.0)// izračunamo koliko je Pi
 
 using namespace std;
-double pi = 2 * acos(0.0); // izračunamo koliko je Pi
+
 int stevec = 0;
 
 typedef Eigen::Matrix<double, 3, 1> vektor3d; // typdef za seznam
@@ -308,7 +310,7 @@ int main(){
     cout << "______________________________________________" << endl;
     cout << "" << endl;
     Eigen::VectorXd test(6);
-    test << 0.7, 0.2, 0.1, pi, 0, pi;
+    test << 0.6, 0.7, 0.3, pi, 0, pi;
     cout << InverznaKinematika(test) <<endl;
     cout << "______________________________________________" << endl;
     cout << "" << endl;
