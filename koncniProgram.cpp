@@ -260,3 +260,30 @@ Eigen::MatrixXd GeometricJakobian(double t0, double t1, double t2, double t3, do
 
     return jakobijeva_matrika;
 }
+
+Eigen::VectorXd inverznaKinematika(Eigen::VectorXd zeljenaPozicja, Eigen::VectorXd orientacijaKvaternion){
+
+    std::vector<double> MAX = {sklep1_MAX, sklep2_MAX, sklep3_MAX, sklep4_MAX, sklep5_MAX, sklep6_MAX, sklep7_MAX};
+    std::vector<double> MIN = {sklep1_MIN, sklep2_MIN, sklep3_MIN, sklep4_MIN, sklep4_MIN, sklep6_MIN, sklep7_MIN};
+    Eigen::VectorXd TrenutniKoti(7);
+    for (int i = 0; i < 7; i++)
+    {
+        TrenutniKoti(i) = seznam[i];
+    }
+
+    Eigen::MatrixXd Kp_Ko(6, 6);
+
+    Kp_Ko << 3, 0, 0, 0, 0, 0,
+             0, 3, 0, 0, 0, 0,
+             0, 0, 3, 0, 0, 0,
+             0, 0, 0, 3, 0, 0,
+             0, 0, 0, 0, 3, 0,
+             0, 0, 0, 0, 0, 3;
+
+    
+
+
+
+
+
+}
