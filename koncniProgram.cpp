@@ -260,8 +260,41 @@ Eigen::MatrixXd GeometricJakobian(double t0, double t1, double t2, double t3, do
 
     return jakobijeva_matrika;
 }
+Eigen::MatrixXd Transpose(Eigen::Matrix3d Matrika){
 
-Eigen::VectorXd inverznaKinematika(Eigen::VectorXd zeljenaPozicja, Eigen::VectorXd orientacijaKvaternion){
+    Eigen::MatrixXd Transpose(3,3);
+    Transpose = Matrika.transpose();
+
+    return Transpose;
+}
+
+double razlika_kotov(Eigen::MatrixXd M1, Eigen::MatrixXd M2){
+
+    Eigen::MatrixXd PrvaMatrika (3,3);
+    Eigen::MatrixXd DrugaMatrika (3,3);
+
+    PrvaMatrika << M1(0, 0), M1(0, 1), M1(0, 2),
+                   M1(1, 0), M1(1, 1), M1(1, 2),
+                   M1(2, 0), M1(2, 1), M1(2, 2);
+
+    DrugaMatrika << M2(0, 0), M2(0, 1), M2(0, 2),
+                    M2(1, 0), M2(1, 1), M2(1, 2),
+                    M2(2, 0), M2(2, 1), M2(2, 2);
+
+    Eigen::MatrixXd R(3,3);
+    Eigen::MatrixXd TransposeDrugaMatrika(3,3);
+    TransposeDrugaMatrika = Transpose(DrugaMatrika); 
+    R = PrvaMatrika * TransposeDrugaMatrika;
+    double trR = R(0,0)+R(1,1)+R(2,2);
+
+    double theta;
+    theta = acos((trR-1)/2);
+
+    return theta;
+}
+
+//podas vektor zelejene pozicije x,y,z in kvaternion vektor kot w,i,j,k
+Eigen::VectorXd inverznaKinematika(Eigen::VectorXd Zeljena_pozicja, Eigen::VectorXd orientacijaKvaternion){
 
     std::vector<double> MAX = {sklep1_MAX, sklep2_MAX, sklep3_MAX, sklep4_MAX, sklep5_MAX, sklep6_MAX, sklep7_MAX};
     std::vector<double> MIN = {sklep1_MIN, sklep2_MIN, sklep3_MIN, sklep4_MIN, sklep4_MIN, sklep6_MIN, sklep7_MIN};
@@ -280,10 +313,16 @@ Eigen::VectorXd inverznaKinematika(Eigen::VectorXd zeljenaPozicja, Eigen::Vector
              0, 0, 0, 0, 3, 0,
              0, 0, 0, 0, 0, 3;
 
+    Eigen::Vector4d Zacetni_kvaternion_vektor = orientacijaKvaternion;
+    Eigen::Vector3d Zacetni_kvaternion_vektor_ijk;
+    Zacetni_kvaternion_vektor_ijk << Zacetni_kvaternion_vektor(1), Zacetni_kvaternion_vektor(2), Zacetni_kvaternion_vektor(3);
+
+    Eigen::Vector3d eP;
+    Eigen::Vector3d eO;
+    Eigen::Vector3d Trenutna_pozicija;
+    Eigen::Vector3d Trenutna_orientacija;
+    Eigen::Vector3d kvaternion_vektor_trenutni_ijk;
+    Eigen::VectorXd dq(7);
+
     
-
-
-
-
-
 }
