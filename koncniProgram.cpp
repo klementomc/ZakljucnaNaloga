@@ -27,8 +27,8 @@
 #define sklep7_MIN -2.8973
 
 #define n_iter 1500
-#define thershP 0.001
-#define thresh0 0.001
+#define thershP 0.01
+#define thresh0 0.01
 #define koef_alpha 0.6
 #define pi 2 * acos(0.0) 
 
@@ -36,8 +36,6 @@ using namespace std;
 
 int stevec = 0;
 
-typedef Eigen::Matrix<double, 3, 1> vektor3d; 
-typedef Eigen::Matrix<double, 7, 1> vektor7d; 
 // vector<double> seznam = {0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0}; // nastavi prave vrednosti kotov
 
 vector<double> seznam = {0, -17.2 * pi / 180, 0, -126 * pi / 180, 0, 115 * pi / 180, 45 * pi / 180}; // nastavi prave vrednosti kotov
@@ -294,7 +292,7 @@ double razlika_kotov(Eigen::MatrixXd M1, Eigen::MatrixXd M2){
 }
 
 //podas vektor zelejene pozicije x,y,z in kvaternion vektor kot w,i,j,k
-Eigen::VectorXd inverznaKinematika(Eigen::VectorXd Zeljena_pozicja, Eigen::VectorXd orientacijaKvaternion){
+Eigen::VectorXd inverznaKinematika(Eigen::Vector3d Zeljena_pozicja, Eigen::VectorXd orientacijaKvaternion){
 
     std::vector<double> MAX = {sklep1_MAX, sklep2_MAX, sklep3_MAX, sklep4_MAX, sklep5_MAX, sklep6_MAX, sklep7_MAX};
     std::vector<double> MIN = {sklep1_MIN, sklep2_MIN, sklep3_MIN, sklep4_MIN, sklep4_MIN, sklep6_MIN, sklep7_MIN};
@@ -324,5 +322,32 @@ Eigen::VectorXd inverznaKinematika(Eigen::VectorXd Zeljena_pozicja, Eigen::Vecto
     Eigen::Vector3d kvaternion_vektor_trenutni_ijk;
     Eigen::VectorXd dq(7);
 
-    
+
+    float neP = 1.00; // vrednosti za izračun napake pozicije
+    float neO = 1.00; // vrednosti za izračun napake orientacije
+
+    while (!(neP < thershP && neO < thresh0) && stevec < n_iter){
+
+        Eigen::MatrixXd J(6, 7);
+        J = GeometricJakobian(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
+
+        Eigen::MatrixXd FK(4, 4);
+        FK = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
+
+        Eigen::Vector4d kvaternion_vektor_trenutni = RotMat2Qvec(FK);
+        kvaternion_vektor_trenutni_ijk << kvaternion_vektor_trenutni(1), kvaternion_vektor_trenutni(2), kvaternion_vektor_trenutni(3);
+
+        Trenutna_pozicija << FK(0, 3), FK(1, 3), FK(2, 3);
+
+        eP = Zeljena_pozicja - Trenutna_pozicija;
+        eO = -Zacetni_kvaternion_vektor(0) * kvaternion_vektor_trenutni_ijk + kvaternion_vektor_trenutni(0) * Zacetni_kvaternion_vektor_ijk - Zacetni_kvaternion_vektor_ijk.cross(kvaternion_vektor_trenutni_ijk);
+
+        Eigen::VectorXd vektor_zdruzen_eP_eO(6);
+        vektor_zdruzen_eP_eO << eP(0), eP(1), eP(2), eO(0), eO(1), eO(2);
+        Eigen::MatrixXd Pseudo_J(7, 6); 
+        Pseudo_J = pseudoInverse(J);
+        dq = koef_alpha * (Pseudo_J * (Kp_Ko * vektor_zdruzen_eP_eO));
+
+        TrenutniKoti = TrenutniKoti + dq;
+    }
 }
