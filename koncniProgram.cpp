@@ -26,10 +26,10 @@
 #define sklep6_MIN -0.0175
 #define sklep7_MIN -2.8973
 
-#define n_iter 1500
+#define n_iter 5000
 #define thershP 0.01
 #define thresh0 0.01
-#define koef_alpha 0.6
+#define koef_alpha 0.01
 #define pi 2 * acos(0.0) 
 
 using namespace std;
@@ -301,15 +301,17 @@ Eigen::VectorXd inverznaKinematika(Eigen::Vector3d Zeljena_pozicja, Eigen::Vecto
     {
         TrenutniKoti(i) = seznam[i];
     }
+    Eigen::Matrix4d Zacetna_matrika_DK (4,4);
+    Zacetna_matrika_DK = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
 
     Eigen::MatrixXd Kp_Ko(6, 6);
 
-    Kp_Ko << 3, 0, 0, 0, 0, 0,
-             0, 3, 0, 0, 0, 0,
-             0, 0, 3, 0, 0, 0,
-             0, 0, 0, 3, 0, 0,
-             0, 0, 0, 0, 3, 0,
-             0, 0, 0, 0, 0, 3;
+    Kp_Ko << 2, 0, 0, 0, 0, 0,
+             0, 2, 0, 0, 0, 0,
+             0, 0, 2, 0, 0, 0,
+             0, 0, 0, 2, 0, 0,
+             0, 0, 0, 0, 2, 0,
+             0, 0, 0, 0, 0, 2;
 
     Eigen::Vector4d Zacetni_kvaternion_vektor = orientacijaKvaternion;
     Eigen::Vector3d Zacetni_kvaternion_vektor_ijk;
@@ -323,8 +325,8 @@ Eigen::VectorXd inverznaKinematika(Eigen::Vector3d Zeljena_pozicja, Eigen::Vecto
     Eigen::VectorXd dq(7);
 
 
-    float neP = 1.00; // vrednosti za izračun napake pozicije
-    float neO = 1.00; // vrednosti za izračun napake orientacije
+    double neP = 1.00; // vrednosti za izračun napake pozicije
+    double neO = 0.5; // vrednosti za izračun napake orientacije
 
     while (!(neP < thershP && neO < thresh0) && stevec < n_iter){
 
@@ -340,7 +342,12 @@ Eigen::VectorXd inverznaKinematika(Eigen::Vector3d Zeljena_pozicja, Eigen::Vecto
         Trenutna_pozicija << FK(0, 3), FK(1, 3), FK(2, 3);
 
         eP = Zeljena_pozicja - Trenutna_pozicija;
+        double zacetna_eP = sqrt(pow(eP(0), 2) + pow(eP(1), 2) + pow(eP(2), 2));
+
         eO = -Zacetni_kvaternion_vektor(0) * kvaternion_vektor_trenutni_ijk + kvaternion_vektor_trenutni(0) * Zacetni_kvaternion_vektor_ijk - Zacetni_kvaternion_vektor_ijk.cross(kvaternion_vektor_trenutni_ijk);
+        if(zacetna_eP < neP){
+            break;
+        }
 
         Eigen::VectorXd vektor_zdruzen_eP_eO(6);
         vektor_zdruzen_eP_eO << eP(0), eP(1), eP(2), eO(0), eO(1), eO(2);
@@ -349,5 +356,34 @@ Eigen::VectorXd inverznaKinematika(Eigen::Vector3d Zeljena_pozicja, Eigen::Vecto
         dq = koef_alpha * (Pseudo_J * (Kp_Ko * vektor_zdruzen_eP_eO));
 
         TrenutniKoti = TrenutniKoti + dq;
+
+        for(int i = 0; i<=6; i++){
+            if(TrenutniKoti(i) < -2 * pi){
+                while(TrenutniKoti(i) < 0){TrenutniKoti(i) = TrenutniKoti(i)+(2*pi);}
+                if(TrenutniKoti(i)>0){TrenutniKoti(i)=TrenutniKoti(i)-(2*pi);}//pogoj da se nebo predznak spremenu
+            }
+            if (TrenutniKoti(i) > 2 * pi){
+                while (TrenutniKoti(i) > 0){TrenutniKoti(i) = TrenutniKoti(i) - (2 * pi);}
+                if (TrenutniKoti(i) < 0){TrenutniKoti(i) = TrenutniKoti(i) + (2 * pi);} // pogoj da se nebo predznak spremenu
+            }
+        }
+        Eigen::Matrix4d Trenutna_matrika_DK (4,4);
+        Trenutna_matrika_DK = DirektnaKinematika(TrenutniKoti(0), TrenutniKoti(1), TrenutniKoti(2), TrenutniKoti(3), TrenutniKoti(4), TrenutniKoti(5), TrenutniKoti(6));
+
+        neP = sqrt(pow(eP(0), 2)+pow(eP(1), 2)+pow(eP(2), 2));
+        neO = razlika_kotov(Zacetna_matrika_DK, Trenutna_matrika_DK);
     }
+
+    cout << stevec << endl;
+    stevec = 0;
+
+    for (int u = 0; u < 7; u++)
+    {
+        seznam[u] = TrenutniKoti(u);
+    }
+    return TrenutniKoti;
+}
+
+int main(){
+    std::cout << "test compilnig" << std::endl;
 }
