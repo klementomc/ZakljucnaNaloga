@@ -9,7 +9,7 @@
 #include <Eigen/SVD>
 #include <time.h>
 #include <map>
-#include <jakobi.h>
+
 
 #define sklep1_MAX 2.8973
 #define sklep2_MAX 1.7628

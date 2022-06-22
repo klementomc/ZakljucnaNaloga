@@ -9,19 +9,13 @@
 #include <Eigen/SVD>
 #include <time.h>
 #include <map>
+#include <fstream>
 
 using namespace std;
 
 int main(){
-    Eigen::Vector3d e1;
-    Eigen::Vector3d e2;
-
-    e1 << 1,2,3;
-    e2 << 4,5,6;
-
-    cout << e1 << endl;
-    cout << "----" << endl;
-    cout << e2 - e1 <<endl;
-    cout << "----" << endl;
-    cout << e1.cross(e2) << endl;
+    double vrednost;
+    cin >> vrednost;
+    cout << "c=";
+    cout << vrednost << endl;
 }
