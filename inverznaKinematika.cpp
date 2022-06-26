@@ -28,9 +28,9 @@
 #define sklep7_MIN -2.8973
 
 #define n_iter 1500
-#define thershP 0.001
-#define thresh0 0.001
-#define koef_alpha 0.6
+#define thershP 0.0001
+#define thresh0 0.0001
+#define koef_alpha 0.03
 #define pi 2 * acos(0.0)// izračunamo koliko je Pi
 
 using namespace std;
@@ -41,7 +41,7 @@ typedef Eigen::Matrix<double, 3, 1> vektor3d; // typdef za seznam
 typedef Eigen::Matrix<double, 7, 1> vektor7d; // typdef za seznam
 //vector<double> seznam = {0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0}; // nastavi prave vrednosti kotov
 
-vector<double> seznam = {0, -17.2 * pi / 180, 0, -126 * pi / 180, 0, 115*pi/180, 45*pi/180}; // nastavi prave vrednosti kotov
+vector<double> seznam = {0.2, -0.92, -0.07, -2.12, -0.4, 1.47, 0.29}; // nastavi prave vrednosti kotov
 
 // Izračun psevdoinverzne matrike Moor-Penrose inverse
 // method for calculating the pseudo-Inverse as recommended by Eigen developers
@@ -310,7 +310,7 @@ int main(){
     cout << "______________________________________________" << endl;
     cout << "" << endl;
     Eigen::VectorXd test(6);
-    test << 0.6, 0.7, 0.3, pi, 0, pi;
+    test << 0.238868, -0.0606298, 0.731547, -0.373099, 2.78811, -0.300934;
     cout << InverznaKinematika(test) <<endl;
     cout << "______________________________________________" << endl;
     cout << "" << endl;
